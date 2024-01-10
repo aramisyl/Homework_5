@@ -8,21 +8,15 @@ cipher = {
     '----': 'Ш', '--.-': 'Щ', '-. -': 'Ъ', '-.--': 'Ы',
     '-..-': 'Ь', '. -.': 'Э', '..--': 'Ю', '.-.-': 'Я',
 }
-def get_key_by_value(dictionary, value):
-    for key, val in dictionary.items():
-        if val == value:
-            return key
-    return None
+
+flipped_cipher = {value: key for key, value in cipher.items()}
+
 def telegraph(text):
-    global encrypted_char
     text = text.upper()
     encrypted_text = ""
     for char in text:
-        if char.isalpha():
-            encrypted_char = get_key_by_value(cipher, char)
-            encrypted_text += encrypted_char
-        else:
-            encrypted_text += char
+        decrypted_char = flipped_cipher.get(char)
+        encrypted_text += decrypted_char
     return encrypted_text
 
 plaintext = input("Введите текст для шифрования.")
