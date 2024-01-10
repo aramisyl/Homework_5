@@ -26,12 +26,7 @@ def split_string(text):
 def decipher(text):
     decrypted_text = ''
     for item in split_string(strip_symbols_except(plaintext)):
-
-        if item in cipher.keys():
-            decrypted_char = cipher.get(item)
-            decrypted_text += decrypted_char
-        else:
-            decrypted_text += "?"
+        decrypted_text += cipher.get(item, "?")
     return decrypted_text
 
 print(decipher(plaintext))
